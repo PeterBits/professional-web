@@ -1,0 +1,99 @@
+{
+  "meta": {
+    "home": {
+      "title": "Aventura y Libertad | Alquiler de Camper",
+      "description": "Alquila nuestra camper totalmente equipada. Diseñada para aventuras sin ataduras."
+    },
+    "bookings": {
+      "title": "Reservas | Aventura y Libertad",
+      "description": "Consulta la disponibilidad de nuestra camper y reserva tu próxima aventura."
+    }
+  },
+  "nav": {
+    "brand": "Aventura y Libertad",
+    "home": "Inicio",
+    "bookings": "Reservas",
+    "rent": "Reservar",
+    "lang": "EN"
+  },
+  "home": {
+    "hero": {
+      "label": "Furgoneta Camper",
+      "title": "Aventura y libertad sobre ruedas.",
+      "subtitle": "Una camper lista para el camino, diseñada para quienes buscan historias reales.",
+      "cta": "Consultar disponibilidad",
+      "alt": "Furgoneta camper al amanecer en carretera de montaña"
+    },
+    "info": {
+      "label": "La camper",
+      "title": "Un refugio sobre ruedas, equipado al detalle.",
+      "specsTitle": "Ficha técnica",
+      "specs": [
+        { "label": "Longitud", "value": "5,40 m" },
+        { "label": "Motor", "value": "2.0 Diésel · 150 CV" },
+        { "label": "Plazas cama", "value": "2 adultos" },
+        { "label": "Energía solar", "value": "300 W autónoma" }
+      ],
+      "equipmentTitle": "Equipamiento",
+      "equipment": [
+        { "icon": "bed",    "label": "Cama de matrimonio" },
+        { "icon": "stove",  "label": "Cocina y nevera" },
+        { "icon": "shower", "label": "Ducha exterior" },
+        { "icon": "wifi",   "label": "Wi-Fi 4G" },
+        { "icon": "solar",  "label": "Placa solar 300W" },
+        { "icon": "water",  "label": "Depósito 80L" }
+      ],
+      "imageAlt": "Interior ordenado de una camper con luz cálida"
+    },
+    "pricing": {
+      "label": "Tarifas",
+      "title": "Precios por temporada.",
+      "subtitle": "Todo incluido: seguro, kilometraje ilimitado y atención 24/7.",
+      "cards": [
+        { "season": "Temporada baja", "price": "65", "unit": "€ / noche", "months": "Noviembre – Febrero" },
+        { "season": "Temporada media", "price": "80", "unit": "€ / noche", "months": "Marzo – Junio · Octubre" },
+        { "season": "Temporada alta", "price": "95", "unit": "€ / noche", "months": "Julio – Septiembre" }
+      ]
+    }
+  },
+  "bookings": {
+    "hero": {
+      "label": "Reservas",
+      "title": "Elige tus fechas.",
+      "subtitle": "Disponibilidad sincronizada en tiempo real."
+    },
+    "calendar": {
+      "title": "Disponibilidad",
+      "legendAvailable": "Disponible",
+      "legendReserved": "Reservado",
+      "legendToday": "Hoy",
+      "loading": "Cargando disponibilidad…",
+      "errorTitle": "No se pudo cargar la disponibilidad.",
+      "errorHint": "Escríbenos por WhatsApp y te confirmamos al instante.",
+      "footnote": "Las reservas se confirman por WhatsApp.",
+      "months": ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"],
+      "weekdays": ["Lun","Mar","Mié","Jue","Vie","Sáb","Dom"]
+    },
+    "contact": {
+      "label": "Reservar",
+      "title": "Tres pasos para rodar.",
+      "steps": [
+        { "n": "01", "title": "Consulta fechas", "text": "Mira el calendario y elige tu ventana de viaje." },
+        { "n": "02", "title": "Escríbenos",     "text": "Cuéntanos ruta y número de viajeros por WhatsApp." },
+        { "n": "03", "title": "Confirma",        "text": "Reserva con señal del 30%. El resto, al recoger la camper." }
+      ],
+      "whatsapp": "Reservar por WhatsApp",
+      "instagram": "Síguenos en Instagram",
+      "whatsappHref": "https://wa.me/34600000000",
+      "instagramHref": "https://instagram.com/aventurayLibertad"
+    }
+  },
+  "footer": {
+    "tagline": "Aventura y libertad sobre ruedas.",
+    "whatsapp": "WhatsApp",
+    "instagram": "Instagram",
+    "whatsappHref": "https://wa.me/34600000000",
+    "instagramHref": "https://instagram.com/aventurayLibertad",
+    "copyright": "© 2026 Aventura y Libertad. Todos los derechos reservados."
+  }
+}

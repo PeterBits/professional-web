@@ -1,0 +1,99 @@
+{
+  "meta": {
+    "home": {
+      "title": "Adventure & Freedom | Campervan Rental",
+      "description": "Rent our fully equipped campervan. Built for stories worth telling."
+    },
+    "bookings": {
+      "title": "Bookings | Adventure & Freedom",
+      "description": "Check our campervan availability and book your next adventure."
+    }
+  },
+  "nav": {
+    "brand": "Adventure & Freedom",
+    "home": "Home",
+    "bookings": "Bookings",
+    "rent": "Book now",
+    "lang": "ES"
+  },
+  "home": {
+    "hero": {
+      "label": "Campervan",
+      "title": "Adventure and freedom on wheels.",
+      "subtitle": "A road-ready campervan for travelers who want real stories.",
+      "cta": "See availability",
+      "alt": "Campervan on a mountain road at sunrise"
+    },
+    "info": {
+      "label": "The van",
+      "title": "A shelter on wheels, built for the long road.",
+      "specsTitle": "Specs",
+      "specs": [
+        { "label": "Length", "value": "5.40 m" },
+        { "label": "Engine", "value": "2.0 Diesel · 150 HP" },
+        { "label": "Sleeps", "value": "2 adults" },
+        { "label": "Solar", "value": "300 W off-grid" }
+      ],
+      "equipmentTitle": "Equipment",
+      "equipment": [
+        { "icon": "bed",    "label": "Queen bed" },
+        { "icon": "stove",  "label": "Kitchen & fridge" },
+        { "icon": "shower", "label": "Outdoor shower" },
+        { "icon": "wifi",   "label": "4G Wi-Fi" },
+        { "icon": "solar",  "label": "300W solar panel" },
+        { "icon": "water",  "label": "80L water tank" }
+      ],
+      "imageAlt": "Warm, tidy interior of a campervan"
+    },
+    "pricing": {
+      "label": "Pricing",
+      "title": "Seasonal rates.",
+      "subtitle": "All-in: insurance, unlimited mileage, and 24/7 support.",
+      "cards": [
+        { "season": "Low season",  "price": "65", "unit": "€ / night", "months": "November – February" },
+        { "season": "Mid season",  "price": "80", "unit": "€ / night", "months": "March – June · October" },
+        { "season": "High season", "price": "95", "unit": "€ / night", "months": "July – September" }
+      ]
+    }
+  },
+  "bookings": {
+    "hero": {
+      "label": "Bookings",
+      "title": "Pick your dates.",
+      "subtitle": "Availability synced in real time."
+    },
+    "calendar": {
+      "title": "Availability",
+      "legendAvailable": "Available",
+      "legendReserved": "Booked",
+      "legendToday": "Today",
+      "loading": "Loading availability…",
+      "errorTitle": "Couldn't load availability.",
+      "errorHint": "Message us on WhatsApp and we'll confirm instantly.",
+      "footnote": "Bookings are confirmed over WhatsApp.",
+      "months": ["January","February","March","April","May","June","July","August","September","October","November","December"],
+      "weekdays": ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"]
+    },
+    "contact": {
+      "label": "Book",
+      "title": "Three steps to hit the road.",
+      "steps": [
+        { "n": "01", "title": "Check dates",  "text": "Browse the calendar and pick your window." },
+        { "n": "02", "title": "Message us",   "text": "Share the route and traveler count on WhatsApp." },
+        { "n": "03", "title": "Confirm",      "text": "Reserve with a 30% deposit. Pay the rest on pickup." }
+      ],
+      "whatsapp": "Book via WhatsApp",
+      "instagram": "Follow on Instagram",
+      "whatsappHref": "https://wa.me/34600000000",
+      "instagramHref": "https://instagram.com/aventurayLibertad"
+    }
+  },
+  "footer": {
+    "tagline": "Adventure and freedom on wheels.",
+    "whatsapp": "WhatsApp",
+    "instagram": "Instagram",
+    "whatsappHref": "https://wa.me/34600000000",
+    "instagramHref": "https://instagram.com/aventurayLibertad",
+    "copyright": "© 2026 Adventure & Freedom. All rights reserved."
+  }
+}
