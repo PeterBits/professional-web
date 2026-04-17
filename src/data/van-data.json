@@ -1,0 +1,88 @@
+{
+  "$comment": "Datos factuales de la furgoneta. Si falta info, null o 'A consultar'.",
+  "vehicle": {
+    "chassis": "Ford",
+    "model": "Rimor Kilig",
+    "year": 2024,
+    "fuel": { "es": "Diésel", "en": "Diesel" },
+    "transmission": { "es": "Manual", "en": "Manual" },
+    "displacement": "2000 cc",
+    "doors": 3,
+    "color": { "es": "Blanco", "en": "White" },
+    "bodyType": { "es": "Capuchina", "en": "Coachbuilt (over-cab)" },
+    "licenseCategory": "B"
+  },
+  "capacity": {
+    "travelSeats": 6,
+    "sleepingPlaces": 6,
+    "bedSummary": {
+      "es": "Camas dobles + cama capuchina",
+      "en": "Double beds + over-cab bed"
+    }
+  },
+  "specs": [
+    {
+      "labelKey": "chassis",
+      "label": { "es": "Chasis y modelo", "en": "Chassis & model" },
+      "value": { "es": "Ford Rimor Kilig · 2024", "en": "Ford Rimor Kilig · 2024" }
+    },
+    {
+      "labelKey": "engine",
+      "label": { "es": "Motor", "en": "Engine" },
+      "value": { "es": "2000 cc · Diésel · Manual", "en": "2000 cc · Diesel · Manual" }
+    },
+    {
+      "labelKey": "capacity",
+      "label": { "es": "Plazas", "en": "Capacity" },
+      "value": { "es": "6 viajan · 6 duermen", "en": "6 travel · 6 sleep" }
+    },
+    {
+      "labelKey": "beds",
+      "label": { "es": "Camas", "en": "Beds" },
+      "value": { "es": "Dobles + capuchina", "en": "Doubles + over-cab" }
+    }
+  ],
+  "equipment": [
+    { "icon": "bed",     "label": { "es": "Cama capuchina y camas dobles",         "en": "Over-cab & double beds" } },
+    { "icon": "stove",   "label": { "es": "Cocina y nevera",                       "en": "Kitchen & fridge" } },
+    { "icon": "heat",    "label": { "es": "Calefacción a gas",                     "en": "Gas heating" } },
+    { "icon": "solar",   "label": { "es": "Placa solar",                           "en": "Solar panel" } },
+    { "icon": "awning",  "label": { "es": "Toldo",                                 "en": "Awning" } },
+    { "icon": "camera",  "label": { "es": "Cámara de marcha atrás",                "en": "Reverse camera" } },
+    { "icon": "kit",     "label": { "es": "Menaje y ropa de cama (opcional)",      "en": "Cookware & bedding (optional)" } },
+    { "icon": "doors",   "label": { "es": "3 puertas",                             "en": "3 doors" } }
+  ],
+  "booking": {
+    "minNights": null,
+    "deposit": null,
+    "depositLabel": {
+      "es": "Fianza a concretar (depende del seguro)",
+      "en": "Deposit TBC (depends on insurance)"
+    },
+    "unlimitedKm": true,
+    "kmLabel": {
+      "es": "Km ilimitados",
+      "en": "Unlimited km"
+    }
+  },
+  "pricing": {
+    "available": false,
+    "availabilityLabel": {
+      "es": "A consultar",
+      "en": "On request"
+    },
+    "subtitle": {
+      "es": "Km ilimitados · Fianza a concretar con el seguro · Mínimo de noches a consultar.",
+      "en": "Unlimited km · Deposit TBC with insurance · Minimum nights on request."
+    },
+    "seasonsMessage": {
+      "es": "Las tarifas varían según la temporada. Escríbenos por WhatsApp y te confirmamos el precio.",
+      "en": "Rates vary by season. Message us on WhatsApp to confirm the price."
+    },
+    "seasons": [
+      { "key": "low",  "season": { "es": "Temporada baja",  "en": "Low season" },  "months": { "es": "Fechas por confirmar", "en": "Dates TBC" } },
+      { "key": "mid",  "season": { "es": "Temporada media", "en": "Mid season" },  "months": { "es": "Fechas por confirmar", "en": "Dates TBC" } },
+      { "key": "high", "season": { "es": "Temporada alta",  "en": "High season" }, "months": { "es": "Fechas por confirmar", "en": "Dates TBC" } }
+    ]
+  }
+}
