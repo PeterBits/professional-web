@@ -1,0 +1,20 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Hero from '../../components/Hero.astro';
+import VanInfo from '../../components/VanInfo.astro';
+import Pricing from '../../components/Pricing.astro';
+import { useTranslations } from '../../i18n/utils';
+
+const lang = 'es';
+const t = useTranslations(lang);
+---
+
+<BaseLayout title={t.meta.home.title} description={t.meta.home.description} lang={lang} active="home">
+  <Header slot="header" lang={lang} active="home" />
+  <Hero lang={lang} />
+  <VanInfo lang={lang} />
+  <Pricing lang={lang} />
+  <Footer slot="footer" lang={lang} />
+</BaseLayout>

@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import BookingCalendar from '../../components/BookingCalendar.astro';
+import ContactBlock from '../../components/ContactBlock.astro';
+import { useTranslations } from '../../i18n/utils';
+
+const lang = 'es';
+const t = useTranslations(lang);
+---
+
+<BaseLayout title={t.meta.bookings.title} description={t.meta.bookings.description} lang={lang} active="bookings">
+  <Header slot="header" lang={lang} active="bookings" />
+  <BookingCalendar lang={lang} />
+  <ContactBlock lang={lang} />
+  <Footer slot="footer" lang={lang} />
+</BaseLayout>
