@@ -4,6 +4,7 @@ import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import Hero from '../../components/Hero.astro';
 import VanInfo from '../../components/VanInfo.astro';
+import Gallery from '../../components/Gallery.astro';
 import Pricing from '../../components/Pricing.astro';
 import { useTranslations } from '../../i18n/utils';
 
@@ -15,6 +16,7 @@ const t = useTranslations(lang);
   <Header slot="header" lang={lang} active="home" />
   <Hero lang={lang} />
   <VanInfo lang={lang} />
+  <Gallery lang={lang} />
   <Pricing lang={lang} />
   <Footer slot="footer" lang={lang} />
 </BaseLayout>
