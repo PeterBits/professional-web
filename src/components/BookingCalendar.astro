@@ -1,0 +1,276 @@
+---
+import type { Lang } from '../i18n/utils';
+import { useTranslations } from '../i18n/utils';
+
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const monthsJson = JSON.stringify(t.bookings.calendar.months);
+const weekdaysJson = JSON.stringify(t.bookings.calendar.weekdays);
+---
+
+<section class="cal section">
+  <div class="cal__inner">
+    <header class="cal__head">
+      <h2 class="display-sm">{t.bookings.calendar.title}</h2>
+      <ul class="cal__legend">
+        <li class="cal__legend-item"><span class="cal__swatch cal__swatch--available"></span>{t.bookings.calendar.legendAvailable}</li>
+        <li class="cal__legend-item"><span class="cal__swatch cal__swatch--reserved"></span>{t.bookings.calendar.legendReserved}</li>
+        <li class="cal__legend-item"><span class="cal__dot"></span>{t.bookings.calendar.legendToday}</li>
+      </ul>
+    </header>
+
+    <div
+      class="cal__frame"
+      id="cal-frame"
+      data-months={monthsJson}
+      data-weekdays={weekdaysJson}
+    >
+      <div class="cal__nav">
+        <span id="cal-label" class="title-lg"></span>
+        <div class="cal__nav-btns">
+          <button id="cal-prev" class="cal__nav-btn" type="button" aria-label="Previous month">&lsaquo;</button>
+          <button id="cal-next" class="cal__nav-btn" type="button" aria-label="Next month">&rsaquo;</button>
+        </div>
+      </div>
+
+      <div id="cal-grid" class="cal__grid">
+        {t.bookings.calendar.weekdays.map((d) => (
+          <div class="cal__weekday label-sm">{d}</div>
+        ))}
+      </div>
+
+      <p id="cal-loading" class="cal__status">{t.bookings.calendar.loading}</p>
+      <div id="cal-error" class="cal__error" hidden>
+        <p>{t.bookings.calendar.errorTitle}</p>
+        <p class="label-sm">{t.bookings.calendar.errorHint}</p>
+      </div>
+    </div>
+
+    <p class="cal__footnote label-sm">{t.bookings.calendar.footnote}</p>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const frame = document.getElementById('cal-frame');
+    if (!frame) return;
+    const MONTHS: string[] = JSON.parse(frame.dataset.months || '[]');
+
+    const grid = document.getElementById('cal-grid');
+    const label = document.getElementById('cal-label');
+    const loading = document.getElementById('cal-loading');
+    const errorEl = document.getElementById('cal-error');
+    const prev = document.getElementById('cal-prev');
+    const next = document.getElementById('cal-next');
+    if (!grid || !label || !loading || !errorEl || !prev || !next) return;
+
+    const now = new Date();
+    let year = now.getFullYear();
+    let month = now.getMonth(); // 0-based
+    let reserved = new Set<string>();
+
+    prev.addEventListener('click', () => shift(-1));
+    next.addEventListener('click', () => shift(1));
+
+    function shift(delta: number) {
+      month += delta;
+      if (month > 11) { month = 0; year++; }
+      if (month < 0)  { month = 11; year--; }
+      render();
+    }
+
+    function pad(n: number) { return String(n).padStart(2, '0'); }
+
+    async function render() {
+      label!.textContent = `${MONTHS[month]} ${year}`;
+
+      // Preserve weekday headers (first 7 children)
+      const headers = Array.from(grid!.children).slice(0, 7);
+      grid!.innerHTML = '';
+      headers.forEach((h) => grid!.appendChild(h));
+
+      loading!.style.display = 'block';
+      errorEl!.hidden = true;
+      reserved = new Set();
+
+      try {
+        const res = await fetch(`/api/availability?year=${year}&month=${month + 1}`);
+        if (!res.ok) throw new Error('fetch_failed');
+        const data = await res.json();
+        (data.reserved as string[] || []).forEach((d) => reserved.add(d));
+      } catch {
+        errorEl!.hidden = false;
+        loading!.style.display = 'none';
+        paint();
+        return;
+      }
+
+      loading!.style.display = 'none';
+      paint();
+    }
+
+    function paint() {
+      const first = new Date(year, month, 1);
+      const last = new Date(year, month + 1, 0);
+      const daysInMonth = last.getDate();
+
+      // Monday-first index (0 = Mon, 6 = Sun)
+      let startDow = first.getDay() - 1;
+      if (startDow < 0) startDow = 6;
+
+      const today = new Date();
+      const todayKey = `${today.getFullYear()}-${pad(today.getMonth() + 1)}-${pad(today.getDate())}`;
+      const startOfToday = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+
+      // Leading muted cells from previous month
+      const prevLast = new Date(year, month, 0).getDate();
+      for (let i = startDow - 1; i >= 0; i--) {
+        const cell = document.createElement('div');
+        cell.className = 'cal__cell cal__cell--muted';
+        cell.textContent = String(prevLast - i);
+        grid!.appendChild(cell);
+      }
+
+      for (let d = 1; d <= daysInMonth; d++) {
+        const key = `${year}-${pad(month + 1)}-${pad(d)}`;
+        const isReserved = reserved.has(key);
+        const isToday = key === todayKey;
+        const isPast = new Date(year, month, d) < startOfToday;
+
+        const cell = document.createElement('div');
+        cell.className = 'cal__cell';
+        if (isReserved) cell.classList.add('cal__cell--reserved');
+        else if (isPast) cell.classList.add('cal__cell--past');
+        else cell.classList.add('cal__cell--available');
+
+        const num = document.createElement('span');
+        num.className = 'cal__num';
+        num.textContent = String(d);
+        cell.appendChild(num);
+
+        if (isToday) {
+          const dot = document.createElement('span');
+          dot.className = 'cal__today-dot';
+          cell.appendChild(dot);
+        }
+        grid!.appendChild(cell);
+      }
+
+      // Trailing muted cells
+      const totalCells = startDow + daysInMonth;
+      const remaining = totalCells % 7 === 0 ? 0 : 7 - (totalCells % 7);
+      for (let i = 1; i <= remaining; i++) {
+        const cell = document.createElement('div');
+        cell.className = 'cal__cell cal__cell--muted';
+        cell.textContent = String(i);
+        grid!.appendChild(cell);
+      }
+    }
+
+    render();
+  });
+</script>
+
+<style>
+  .cal { background: var(--surface); }
+  .cal__inner { max-width: 960px; margin: 0 auto; display: flex; flex-direction: column; gap: 2rem; }
+
+  .cal__head {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .cal__legend { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 1.5rem; }
+  .cal__legend-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--on-surface-variant);
+    font-size: 0.75rem;
+    letter-spacing: 0.02em;
+  }
+  .cal__swatch { width: 0.75rem; height: 0.75rem; border-radius: 999px; }
+  .cal__swatch--available { background: var(--surface-container-high); }
+  .cal__swatch--reserved  { background: var(--primary); }
+  .cal__dot {
+    width: 4px; height: 4px; border-radius: 999px; background: var(--tertiary);
+  }
+
+  .cal__frame {
+    background: var(--surface-container-high);
+    border-radius: var(--radius-xl);
+    padding: 2rem;
+    box-shadow: var(--elev-floating);
+  }
+
+  .cal__nav {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+  }
+  .cal__nav-btns { display: flex; gap: 0.5rem; }
+  .cal__nav-btn {
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 999px;
+    color: var(--on-surface);
+    font-size: 1.25rem;
+    transition: background var(--transition), color var(--transition);
+  }
+  .cal__nav-btn:hover { background: var(--surface-container-highest); color: var(--primary); }
+
+  .cal__grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.25rem;
+  }
+  .cal__weekday {
+    text-align: center;
+    color: var(--outline);
+    padding: 0.5rem 0;
+  }
+
+  .cal__cell {
+    position: relative;
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-sm);
+    font-family: var(--font-sans);
+    font-weight: 500;
+    color: var(--on-surface);
+    transition: background var(--transition), color var(--transition);
+  }
+  .cal__cell--muted { color: var(--outline-variant); }
+  .cal__cell--past { color: var(--outline-variant); }
+  .cal__cell--available { cursor: default; }
+  .cal__cell--available:hover { background: var(--surface-container-highest); }
+  .cal__cell--reserved {
+    background: var(--primary);
+    color: var(--on-primary);
+    cursor: not-allowed;
+  }
+  .cal__num { line-height: 1; }
+  .cal__today-dot {
+    position: absolute;
+    bottom: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px; height: 4px;
+    border-radius: 999px;
+    background: var(--tertiary);
+  }
+
+  .cal__status { color: var(--on-surface-variant); text-align: center; margin-top: 1.5rem; font-style: italic; }
+  .cal__error { text-align: center; margin-top: 1.5rem; color: var(--error); }
+  .cal__footnote { color: var(--outline); text-align: center; }
+
+  @media (min-width: 768px) {
+    .cal__head { flex-direction: row; justify-content: space-between; align-items: center; }
+    .cal__grid { gap: 0.5rem; }
+  }
+</style>
