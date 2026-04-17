@@ -1,10 +1,16 @@
 ---
 import type { Lang } from '../i18n/utils';
 import { useTranslations } from '../i18n/utils';
+import vanData from '../data/van-data.json';
 
 interface Props { lang: Lang; }
 const { lang } = Astro.props;
 const t = useTranslations(lang);
+
+const pricingSubtitle = vanData.pricing.subtitle[lang];
+const availabilityLabel = vanData.pricing.availabilityLabel[lang];
+const seasonsMessage = vanData.pricing.seasonsMessage[lang];
+const seasons = vanData.pricing.seasons;
 ---
 
 <section class="pricing section">
@@ -12,21 +18,22 @@ const t = useTranslations(lang);
     <header class="pricing__header">
       <span class="label-md pricing__label">{t.home.pricing.label}</span>
       <h2 class="display-md">{t.home.pricing.title}</h2>
-      <p class="body-lg pricing__subtitle">{t.home.pricing.subtitle}</p>
+      <p class="body-lg pricing__subtitle">{pricingSubtitle}</p>
     </header>
 
     <ul class="pricing__grid">
-      {t.home.pricing.cards.map((card) => (
+      {seasons.map((card) => (
         <li class="pricing__card">
-          <p class="label-md pricing__season">{card.season}</p>
+          <p class="label-md pricing__season">{card.season[lang]}</p>
           <p class="pricing__price">
-            <span class="pricing__amount display-md">{card.price}</span>
-            <span class="pricing__unit label-md">{card.unit}</span>
+            <span class="pricing__amount display-md">{availabilityLabel}</span>
           </p>
-          <p class="body-lg pricing__months">{card.months}</p>
+          <p class="body-lg pricing__months">{card.months[lang]}</p>
         </li>
       ))}
     </ul>
+
+    <p class="pricing__note body-lg">{seasonsMessage}</p>
   </div>
 </section>
 
@@ -72,9 +79,19 @@ const t = useTranslations(lang);
     gap: 0.5rem;
     margin: 0;
   }
-  .pricing__amount { color: var(--on-surface); }
-  .pricing__unit { color: var(--on-surface-variant); }
+  .pricing__amount {
+    color: var(--on-surface);
+    font-size: 1.75rem;
+  }
   .pricing__months { color: var(--on-surface-variant); }
+  .pricing__note {
+    margin-top: 2.5rem;
+    color: var(--on-surface-variant);
+    text-align: center;
+    max-width: 48rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
 
   @media (min-width: 768px) {
     .pricing__grid { grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
