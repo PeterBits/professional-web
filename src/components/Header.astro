@@ -1,0 +1,182 @@
+---
+import type { Lang } from '../i18n/utils';
+import type { ActivePage } from '../layouts/BaseLayout.astro';
+import {
+  useTranslations,
+  getHomePath,
+  getBookingsPath,
+  getAlternateHomePath,
+  getAlternateBookingsPath,
+} from '../i18n/utils';
+
+interface Props {
+  lang: Lang;
+  active: ActivePage;
+}
+
+const { lang, active } = Astro.props;
+const t = useTranslations(lang);
+const homePath = getHomePath(lang);
+const bookingsPath = getBookingsPath(lang);
+const altPath = active === 'bookings' ? getAlternateBookingsPath(lang) : getAlternateHomePath(lang);
+---
+
+<header class="header" id="site-header">
+  <div class="header__inner">
+    <a href={homePath} class="header__brand">{t.nav.brand}</a>
+
+    <nav class="header__nav">
+      <a href={homePath}     class={`header__link ${active === 'home' ? 'header__link--active' : ''}`}>{t.nav.home}</a>
+      <a href={bookingsPath} class={`header__link ${active === 'bookings' ? 'header__link--active' : ''}`}>{t.nav.bookings}</a>
+    </nav>
+
+    <div class="header__actions">
+      <a href={altPath} class="header__lang" aria-label="Switch language">{t.nav.lang}</a>
+      <a href={bookingsPath} class="btn btn--primary header__rent">{t.nav.rent}</a>
+    </div>
+
+    <button class="header__hamburger" id="hamburger-btn" type="button" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <nav class="header__mobile" id="mobile-nav">
+    <a href={homePath}     class="header__mobile-link">{t.nav.home}</a>
+    <a href={bookingsPath} class="header__mobile-link">{t.nav.bookings}</a>
+    <a href={altPath}      class="header__mobile-link header__mobile-link--muted">{t.nav.lang}</a>
+  </nav>
+</header>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const hamburger = document.getElementById('hamburger-btn');
+    const mobileNav = document.getElementById('mobile-nav');
+    if (!hamburger || !mobileNav) return;
+
+    hamburger.addEventListener('click', () => {
+      const open = mobileNav.classList.toggle('header__mobile--open');
+      hamburger.setAttribute('aria-expanded', String(open));
+      hamburger.classList.toggle('header__hamburger--open', open);
+    });
+  });
+</script>
+
+<style>
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(53, 53, 53, 0.6);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    height: var(--header-height);
+    display: flex;
+    align-items: center;
+  }
+
+  .header__inner {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+
+  .header__brand {
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    font-weight: 700;
+    font-style: italic;
+    color: var(--on-surface);
+    letter-spacing: -0.01em;
+  }
+
+  .header__nav {
+    display: none;
+    gap: 2rem;
+  }
+
+  .header__link {
+    font-family: var(--font-sans);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--on-surface-variant);
+    letter-spacing: 0.02em;
+    transition: color var(--transition);
+  }
+  .header__link:hover,
+  .header__link--active { color: var(--primary); }
+
+  .header__actions {
+    display: none;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .header__lang {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--on-surface-variant);
+    letter-spacing: var(--ls-label);
+    text-transform: uppercase;
+    padding: 0.5rem 0.75rem;
+    border-radius: var(--radius-sm);
+    transition: color var(--transition), background var(--transition);
+  }
+  .header__lang:hover { color: var(--on-surface); background: rgba(143, 146, 135, 0.08); }
+
+  .header__rent { padding: 0.65rem 1.25rem; font-size: 0.8125rem; }
+
+  .header__hamburger {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+    width: 2.5rem;
+    height: 2.5rem;
+    align-items: center;
+  }
+  .header__hamburger span {
+    display: block;
+    width: 22px;
+    height: 1.5px;
+    background: var(--on-surface);
+    transition: transform var(--transition), opacity var(--transition);
+  }
+  .header__hamburger--open span:nth-child(1) { transform: translateY(5.5px) rotate(45deg); }
+  .header__hamburger--open span:nth-child(2) { opacity: 0; }
+  .header__hamburger--open span:nth-child(3) { transform: translateY(-5.5px) rotate(-45deg); }
+
+  .header__mobile {
+    position: absolute;
+    top: var(--header-height);
+    left: 0;
+    right: 0;
+    background: var(--surface-container);
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 1rem 2rem 1.5rem;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height var(--transition), padding var(--transition);
+  }
+  .header__mobile--open { max-height: 400px; padding: 1rem 2rem 1.5rem; }
+
+  .header__mobile-link {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--on-surface);
+    padding: 0.75rem 0;
+  }
+  .header__mobile-link--muted { color: var(--on-surface-variant); font-size: 0.8125rem; text-transform: uppercase; letter-spacing: var(--ls-label); }
+
+  @media (min-width: 768px) {
+    .header__nav, .header__actions { display: flex; }
+    .header__hamburger, .header__mobile { display: none; }
+  }
+</style>
