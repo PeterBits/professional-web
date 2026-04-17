@@ -56,7 +56,7 @@
       "title": "Availability",
       "legendAvailable": "Available",
       "legendReserved": "Booked",
-      "legendToday": "Today",
+      "legendUnavailable": "Unavailable",
       "loading": "Loading availability…",
       "errorTitle": "Couldn't load availability.",
       "errorHint": "Message us on WhatsApp and we'll confirm instantly.",

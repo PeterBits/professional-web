@@ -56,7 +56,7 @@
       "title": "Disponibilidad",
       "legendAvailable": "Disponible",
       "legendReserved": "Reservado",
-      "legendToday": "Hoy",
+      "legendUnavailable": "No disponible",
       "loading": "Cargando disponibilidad…",
       "errorTitle": "No se pudo cargar la disponibilidad.",
       "errorHint": "Escríbenos por WhatsApp y te confirmamos al instante.",
