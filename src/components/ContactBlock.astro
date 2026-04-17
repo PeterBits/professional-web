@@ -1,0 +1,65 @@
+---
+import type { Lang } from '../i18n/utils';
+import { useTranslations } from '../i18n/utils';
+
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<section class="contact section">
+  <div class="contact__inner">
+    <header class="contact__header">
+      <span class="label-md contact__label">{t.bookings.contact.label}</span>
+      <h2 class="display-md">{t.bookings.contact.title}</h2>
+    </header>
+
+    <ol class="contact__steps">
+      {t.bookings.contact.steps.map((s) => (
+        <li class="contact__step">
+          <span class="contact__n display-sm">{s.n}</span>
+          <h3 class="title-lg contact__step-title">{s.title}</h3>
+          <p class="body-lg contact__step-text">{s.text}</p>
+        </li>
+      ))}
+    </ol>
+
+    <div class="contact__ctas">
+      <a href={t.bookings.contact.whatsappHref}  class="btn btn--primary"   target="_blank" rel="noopener noreferrer">{t.bookings.contact.whatsapp}</a>
+      <a href={t.bookings.contact.instagramHref} class="btn btn--secondary" target="_blank" rel="noopener noreferrer">{t.bookings.contact.instagram}</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact { background: var(--surface); }
+  .contact__inner { max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; gap: 3rem; }
+  .contact__header { display: flex; flex-direction: column; gap: 0.75rem; max-width: 48rem; }
+  .contact__label { color: var(--tertiary); }
+
+  .contact__steps {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .contact__step {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 2rem;
+    background: var(--surface-container);
+    border-radius: var(--radius-lg);
+  }
+  .contact__n { color: var(--tertiary); font-style: italic; }
+  .contact__step-title { color: var(--on-surface); }
+  .contact__step-text  { color: var(--on-surface-variant); }
+
+  .contact__ctas { display: flex; flex-wrap: wrap; gap: 1rem; }
+
+  @media (min-width: 768px) {
+    .contact__steps { grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  }
+</style>
