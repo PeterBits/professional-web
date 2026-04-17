@@ -1,0 +1,75 @@
+---
+import type { Lang } from '../i18n/utils';
+import { useTranslations, getBookingsPath } from '../i18n/utils';
+
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const bookingsPath = getBookingsPath(lang);
+---
+
+<section class="hero">
+  <img
+    src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=1920&q=80"
+    alt={t.home.hero.alt}
+    class="hero__img"
+    loading="eager"
+    fetchpriority="high"
+  />
+  <div class="hero__scrim"></div>
+  <div class="hero__content">
+    <span class="hero__label label-md">{t.home.hero.label}</span>
+    <h1 class="hero__title display-lg">{t.home.hero.title}</h1>
+    <p class="hero__subtitle body-lg">{t.home.hero.subtitle}</p>
+    <a href={bookingsPath} class="btn btn--primary">{t.home.hero.cta}</a>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    width: 100%;
+    min-height: 90vh;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    margin-top: calc(var(--header-height) * -1);
+    padding-top: var(--header-height);
+  }
+  .hero__img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+  .hero__scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(19,19,19,0.25) 0%, rgba(19,19,19,0.25) 50%, var(--surface) 100%);
+    z-index: 1;
+  }
+  .hero__content {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 4rem 2rem 6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    align-items: flex-start;
+  }
+  .hero__label { color: var(--tertiary); }
+  .hero__title {
+    color: var(--on-surface);
+    max-width: 20ch;
+  }
+  .hero__title::first-letter { font-style: italic; }
+  .hero__subtitle {
+    color: var(--on-surface-variant);
+    max-width: 42ch;
+  }
+</style>
