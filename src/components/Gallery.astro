@@ -1,0 +1,84 @@
+---
+import type { Lang } from '../i18n/utils';
+import { useTranslations } from '../i18n/utils';
+
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const GALLERY_IMAGES = [
+  '/assets/foto exterior lateral campo verde.png',
+  '/assets/foto dentro atras retocada.png',
+  '/assets/foto interior comedor.png',
+  '/assets/foto nevera.png',
+] as const;
+---
+
+<section class="gallery section">
+  <div class="gallery__inner">
+    <header class="gallery__header">
+      <span class="label-md gallery__label">{t.home.gallery.label}</span>
+      <h2 class="display-md">{t.home.gallery.title}</h2>
+    </header>
+    <div class="gallery__grid">
+      {GALLERY_IMAGES.map((src, index) => (
+        <figure class="gallery__item">
+          <img
+            src={src}
+            alt={t.home.gallery.images[index].alt}
+            class="gallery__img"
+            loading="lazy"
+          />
+        </figure>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .gallery { background: var(--surface); }
+
+  .gallery__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .gallery__header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    max-width: 42ch;
+  }
+
+  .gallery__label { color: var(--tertiary); }
+
+  .gallery__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .gallery__item {
+    margin: 0;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    aspect-ratio: 4 / 3;
+  }
+
+  .gallery__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  @media (min-width: 768px) {
+    .gallery__grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+  }
+</style>
