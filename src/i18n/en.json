@@ -1,16 +1,16 @@
 {
   "meta": {
     "home": {
-      "title": "Adventure & Freedom | Campervan Rental",
-      "description": "Rent our fully equipped campervan. Built for stories worth telling."
+      "title": "Rolling Free | Campervan Rental",
+      "description": "Rent our Ford Rimor Kilig camper van: double beds, over-cab bed and optional equipment."
     },
     "bookings": {
-      "title": "Bookings | Adventure & Freedom",
-      "description": "Check our campervan availability and book your next adventure."
+      "title": "Bookings | Rolling Free",
+      "description": "Check availability and book your next adventure."
     }
   },
   "nav": {
-    "brand": "Adventure & Freedom",
+    "brand": "Rolling Free",
     "home": "Home",
     "bookings": "Bookings",
     "rent": "Book now",
@@ -18,42 +18,32 @@
   },
   "home": {
     "hero": {
-      "label": "Campervan",
-      "title": "Adventure and freedom on wheels.",
-      "subtitle": "A road-ready campervan for travelers who want real stories.",
+      "label": "Camper van",
+      "title": "Freedom on wheels.",
+      "subtitle": "A road-ready camper van for up to 6 travellers. Optional equipment, pack it your way.",
       "cta": "See availability",
-      "alt": "Campervan on a mountain road at sunrise"
+      "alt": "Camper van in a green meadow with mountains"
     },
     "info": {
       "label": "The van",
       "title": "A shelter on wheels, built for the long road.",
       "specsTitle": "Specs",
-      "specs": [
-        { "label": "Length", "value": "5.40 m" },
-        { "label": "Engine", "value": "2.0 Diesel · 150 HP" },
-        { "label": "Sleeps", "value": "2 adults" },
-        { "label": "Solar", "value": "300 W off-grid" }
-      ],
       "equipmentTitle": "Equipment",
-      "equipment": [
-        { "icon": "bed",    "label": "Queen bed" },
-        { "icon": "stove",  "label": "Kitchen & fridge" },
-        { "icon": "shower", "label": "Outdoor shower" },
-        { "icon": "wifi",   "label": "4G Wi-Fi" },
-        { "icon": "solar",  "label": "300W solar panel" },
-        { "icon": "water",  "label": "80L water tank" }
-      ],
-      "imageAlt": "Warm, tidy interior of a campervan"
+      "imageAlt": "Campervan interior: lounge area looking towards the front"
+    },
+    "gallery": {
+      "label": "Gallery",
+      "title": "The van, inside and out.",
+      "images": [
+        { "alt": "Side view of the van on a green meadow" },
+        { "alt": "Kitchen and access to the rear area" },
+        { "alt": "Dinette with central table and benches" },
+        { "alt": "Fridge open, full of provisions" }
+      ]
     },
     "pricing": {
       "label": "Pricing",
-      "title": "Seasonal rates.",
-      "subtitle": "All-in: insurance, unlimited mileage, and 24/7 support.",
-      "cards": [
-        { "season": "Low season",  "price": "65", "unit": "€ / night", "months": "November – February" },
-        { "season": "Mid season",  "price": "80", "unit": "€ / night", "months": "March – June · October" },
-        { "season": "High season", "price": "95", "unit": "€ / night", "months": "July – September" }
-      ]
+      "title": "Seasonal rates."
     }
   },
   "bookings": {
@@ -79,21 +69,19 @@
       "title": "Three steps to hit the road.",
       "steps": [
         { "n": "01", "title": "Check dates",  "text": "Browse the calendar and pick your window." },
-        { "n": "02", "title": "Message us",   "text": "Share the route and traveler count on WhatsApp." },
-        { "n": "03", "title": "Confirm",      "text": "Reserve with a 30% deposit. Pay the rest on pickup." }
+        { "n": "02", "title": "Message us",   "text": "Share the route and traveller count on WhatsApp and we'll confirm the rate." },
+        { "n": "03", "title": "Confirm",      "text": "We close the booking once insurance and deposit are confirmed." }
       ],
       "whatsapp": "Book via WhatsApp",
       "instagram": "Follow on Instagram",
-      "whatsappHref": "https://wa.me/34600000000",
-      "instagramHref": "https://instagram.com/aventurayLibertad"
+      "instagramHref": "https://instagram.com/rodandolibre"
     }
   },
   "footer": {
-    "tagline": "Adventure and freedom on wheels.",
+    "tagline": "Freedom on wheels.",
     "whatsapp": "WhatsApp",
     "instagram": "Instagram",
-    "whatsappHref": "https://wa.me/34600000000",
-    "instagramHref": "https://instagram.com/aventurayLibertad",
-    "copyright": "© 2026 Adventure & Freedom. All rights reserved."
+    "instagramHref": "https://instagram.com/rodandolibre",
+    "copyright": "© 2026 Rolling Free. All rights reserved."
   }
 }

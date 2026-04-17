@@ -1,16 +1,16 @@
 {
   "meta": {
     "home": {
-      "title": "Aventura y Libertad | Alquiler de Camper",
-      "description": "Alquila nuestra camper totalmente equipada. Diseñada para aventuras sin ataduras."
+      "title": "Rodando Libre | Alquiler de camper",
+      "description": "Alquila nuestra furgoneta camper Ford Rimor Kilig: camas dobles, capuchina y equipamiento opcional."
     },
     "bookings": {
-      "title": "Reservas | Aventura y Libertad",
+      "title": "Reservas | Rodando Libre",
       "description": "Consulta la disponibilidad de nuestra camper y reserva tu próxima aventura."
     }
   },
   "nav": {
-    "brand": "Aventura y Libertad",
+    "brand": "Rodando Libre",
     "home": "Inicio",
     "bookings": "Reservas",
     "rent": "Reservar",
@@ -18,42 +18,32 @@
   },
   "home": {
     "hero": {
-      "label": "Furgoneta Camper",
-      "title": "Aventura y libertad sobre ruedas.",
-      "subtitle": "Una camper lista para el camino, diseñada para quienes buscan historias reales.",
+      "label": "Furgoneta camper",
+      "title": "Libertad sobre ruedas.",
+      "subtitle": "Una camper lista para el camino, hasta 6 viajeros. Equipamiento opcional, para prepararla a tu manera.",
       "cta": "Consultar disponibilidad",
-      "alt": "Furgoneta camper al amanecer en carretera de montaña"
+      "alt": "Furgoneta camper en un prado verde con montañas"
     },
     "info": {
       "label": "La camper",
       "title": "Un refugio sobre ruedas, equipado al detalle.",
       "specsTitle": "Ficha técnica",
-      "specs": [
-        { "label": "Longitud", "value": "5,40 m" },
-        { "label": "Motor", "value": "2.0 Diésel · 150 CV" },
-        { "label": "Plazas cama", "value": "2 adultos" },
-        { "label": "Energía solar", "value": "300 W autónoma" }
-      ],
       "equipmentTitle": "Equipamiento",
-      "equipment": [
-        { "icon": "bed",    "label": "Cama de matrimonio" },
-        { "icon": "stove",  "label": "Cocina y nevera" },
-        { "icon": "shower", "label": "Ducha exterior" },
-        { "icon": "wifi",   "label": "Wi-Fi 4G" },
-        { "icon": "solar",  "label": "Placa solar 300W" },
-        { "icon": "water",  "label": "Depósito 80L" }
-      ],
-      "imageAlt": "Interior ordenado de una camper con luz cálida"
+      "imageAlt": "Interior de la camper: zona de salon mirando hacia adelante"
+    },
+    "gallery": {
+      "label": "Galería",
+      "title": "La camper, por dentro y por fuera.",
+      "images": [
+        { "alt": "Vista lateral de la camper en un prado verde" },
+        { "alt": "Cocina y acceso a la zona trasera" },
+        { "alt": "Comedor con mesa central y bancos" },
+        { "alt": "Nevera abierta llena de provisiones" }
+      ]
     },
     "pricing": {
       "label": "Tarifas",
-      "title": "Precios por temporada.",
-      "subtitle": "Todo incluido: seguro, kilometraje ilimitado y atención 24/7.",
-      "cards": [
-        { "season": "Temporada baja", "price": "65", "unit": "€ / noche", "months": "Noviembre – Febrero" },
-        { "season": "Temporada media", "price": "80", "unit": "€ / noche", "months": "Marzo – Junio · Octubre" },
-        { "season": "Temporada alta", "price": "95", "unit": "€ / noche", "months": "Julio – Septiembre" }
-      ]
+      "title": "Precios por temporada."
     }
   },
   "bookings": {
@@ -79,21 +69,19 @@
       "title": "Tres pasos para rodar.",
       "steps": [
         { "n": "01", "title": "Consulta fechas", "text": "Mira el calendario y elige tu ventana de viaje." },
-        { "n": "02", "title": "Escríbenos",     "text": "Cuéntanos ruta y número de viajeros por WhatsApp." },
-        { "n": "03", "title": "Confirma",        "text": "Reserva con señal del 30%. El resto, al recoger la camper." }
+        { "n": "02", "title": "Escríbenos",      "text": "Cuéntanos ruta y número de viajeros por WhatsApp y te confirmamos la tarifa." },
+        { "n": "03", "title": "Confirma",         "text": "Cerramos la reserva una vez concretado el seguro y la fianza." }
       ],
       "whatsapp": "Reservar por WhatsApp",
       "instagram": "Síguenos en Instagram",
-      "whatsappHref": "https://wa.me/34600000000",
-      "instagramHref": "https://instagram.com/aventurayLibertad"
+      "instagramHref": "https://instagram.com/rodandolibre"
     }
   },
   "footer": {
-    "tagline": "Aventura y libertad sobre ruedas.",
+    "tagline": "Libertad sobre ruedas.",
     "whatsapp": "WhatsApp",
     "instagram": "Instagram",
-    "whatsappHref": "https://wa.me/34600000000",
-    "instagramHref": "https://instagram.com/aventurayLibertad",
-    "copyright": "© 2026 Aventura y Libertad. Todos los derechos reservados."
+    "instagramHref": "https://instagram.com/rodandolibre",
+    "copyright": "© 2026 Rodando Libre. Todos los derechos reservados."
   }
 }
