@@ -5,6 +5,10 @@ import { useTranslations } from '../i18n/utils';
 interface Props { lang: Lang; }
 const { lang } = Astro.props;
 const t = useTranslations(lang);
+
+const DEFAULT_WHATSAPP_NUMBER = '34722185903';
+const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER ?? DEFAULT_WHATSAPP_NUMBER;
+const whatsappHref = `https://wa.me/${whatsappNumber}`;
 ---
 
 <section class="contact section">
@@ -25,7 +29,7 @@ const t = useTranslations(lang);
     </ol>
 
     <div class="contact__ctas">
-      <a href={t.bookings.contact.whatsappHref}  class="btn btn--primary"   target="_blank" rel="noopener noreferrer">{t.bookings.contact.whatsapp}</a>
+      <a href={whatsappHref}  class="btn btn--primary"   target="_blank" rel="noopener noreferrer">{t.bookings.contact.whatsapp}</a>
       <a href={t.bookings.contact.instagramHref} class="btn btn--secondary" target="_blank" rel="noopener noreferrer">{t.bookings.contact.instagram}</a>
     </div>
   </div>

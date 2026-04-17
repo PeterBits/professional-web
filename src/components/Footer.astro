@@ -5,13 +5,17 @@ import { useTranslations } from '../i18n/utils';
 interface Props { lang: Lang; }
 const { lang } = Astro.props;
 const t = useTranslations(lang);
+
+const DEFAULT_WHATSAPP_NUMBER = '34722185903';
+const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER ?? DEFAULT_WHATSAPP_NUMBER;
+const whatsappHref = `https://wa.me/${whatsappNumber}`;
 ---
 
 <footer class="footer">
   <div class="footer__inner">
     <p class="footer__tagline title-sm">{t.footer.tagline}</p>
     <div class="footer__links">
-      <a href={t.footer.whatsappHref}  class="footer__link" target="_blank" rel="noopener noreferrer">{t.footer.whatsapp}</a>
+      <a href={whatsappHref}  class="footer__link" target="_blank" rel="noopener noreferrer">{t.footer.whatsapp}</a>
       <a href={t.footer.instagramHref} class="footer__link" target="_blank" rel="noopener noreferrer">{t.footer.instagram}</a>
     </div>
     <p class="footer__copy label-sm">{t.footer.copyright}</p>
