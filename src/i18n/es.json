@@ -1,12 +1,12 @@
 {
   "meta": {
     "home": {
-      "title": "Rodando Libre | Alquiler de camper",
-      "description": "Alquila nuestra furgoneta camper Ford Rimor Kilig: camas dobles, capuchina y equipamiento opcional."
+      "title": "Rodando Libre | Alquiler de camper en Zamora.",
+      "description": "Alquila nuestra camper en Zamora. Ford Rimor Kilig totalmente equipada: cama doble, capuchina y cocina. Reserva online."
     },
     "bookings": {
-      "title": "Reservas | Rodando Libre",
-      "description": "Consulta la disponibilidad de nuestra camper y reserva tu próxima aventura."
+      "title": "Reservar camper en Zamora | Rodando Libre",
+      "description": "Consulta disponibilidad y reserva tu camper en Zamora. Escapadas desde tu ciudad."
     }
   },
   "nav": {
@@ -19,7 +19,7 @@
     "hero": {
       "label": "Furgoneta camper",
       "title": "Rodando Libre",
-      "subtitle": "Una camper lista para el camino, hasta 6 viajeros.",
+      "subtitle": "Alquila una camper desde Zamora y lleva a 6 viajeros a donde quieras.",
       "cta": "Consultar disponibilidad",
       "alt": "Furgoneta camper en un prado verde con montañas"
     },
@@ -99,7 +99,7 @@
         {
           "n": "02",
           "title": "Escríbenos",
-          "text": "Cuéntanos ruta y número de viajeros por WhatsApp y te confirmamos la tarifa."
+          "text": "Cuéntanos tu ruta desde Zamora, León, Valladolid o Salamanca y te confirmamos la tarifa por WhatsApp."
         },
         {
           "n": "03",

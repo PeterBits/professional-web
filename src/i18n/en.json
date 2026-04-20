@@ -1,12 +1,12 @@
 {
   "meta": {
     "home": {
-      "title": "Rolling Free | Campervan Rental",
-      "description": "Rent our Ford Rimor Kilig camper van: double beds, over-cab bed and optional equipment."
+      "title": "Rolling Free | Campervan Rental in Zamora.",
+      "description": "Rent our campervan in Zamora, León, Valladolid or Salamanca, Spain. Ford Rimor Kilig fully equipped: double bed, over-cab bed and kitchen. Book online."
     },
     "bookings": {
-      "title": "Bookings | Rolling Free",
-      "description": "Check availability and book your next adventure."
+      "title": "Book a Campervan in Castilla y León | Rolling Free",
+      "description": "Check availability and book your campervan in Zamora. Road trips across Castilla y León, Spain."
     }
   },
   "nav": {
@@ -19,7 +19,7 @@
     "hero": {
       "label": "Camper van",
       "title": "Rolling Free",
-      "subtitle": "A road-ready camper van for up to 6 travellers.",
+      "subtitle": "Rent a camper van from Zamora and take up to 6 travellers wherever the road leads.",
       "cta": "See availability",
       "alt": "Camper van in a green meadow with mountains"
     },
@@ -99,7 +99,7 @@
         {
           "n": "02",
           "title": "Message us",
-          "text": "Share the route and traveller count on WhatsApp and we'll confirm the rate."
+          "text": "Share your route from Zamora, León, Valladolid or Salamanca on WhatsApp and we'll confirm the rate."
         },
         {
           "n": "03",
