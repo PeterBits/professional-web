@@ -10,9 +10,30 @@ import { useTranslations } from '../../i18n/utils';
 
 const lang = 'en';
 const t = useTranslations(lang);
+const SITE = 'https://rodandolibre.es';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: 'Rodando Libre',
+  description: t.meta.home.description,
+  url: SITE,
+  image: `${SITE}/og-image.jpg`,
+  priceRange: '€€',
+  sameAs: ['https://instagram.com/rodandolibre'],
+};
 ---
 
-<BaseLayout title={t.meta.home.title} description={t.meta.home.description} lang={lang} active="home">
+<BaseLayout
+  title={t.meta.home.title}
+  description={t.meta.home.description}
+  lang={lang}
+  active="home"
+  canonicalUrl={`${SITE}/en/`}
+  hreflangEs={`${SITE}/es/`}
+  hreflangEn={`${SITE}/en/`}
+  schema={schema}
+>
   <Header slot="header" lang={lang} active="home" />
   <Hero lang={lang} />
   <VanInfo lang={lang} />

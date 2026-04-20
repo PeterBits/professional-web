@@ -8,9 +8,18 @@ import { useTranslations } from '../../i18n/utils';
 
 const lang = 'en';
 const t = useTranslations(lang);
+const SITE = 'https://rodandolibre.es';
 ---
 
-<BaseLayout title={t.meta.bookings.title} description={t.meta.bookings.description} lang={lang} active="bookings">
+<BaseLayout
+  title={t.meta.bookings.title}
+  description={t.meta.bookings.description}
+  lang={lang}
+  active="bookings"
+  canonicalUrl={`${SITE}/en/bookings`}
+  hreflangEs={`${SITE}/es/reservas`}
+  hreflangEn={`${SITE}/en/bookings`}
+>
   <Header slot="header" lang={lang} active="bookings" />
   <BookingCalendar lang={lang} />
   <ContactBlock lang={lang} />
