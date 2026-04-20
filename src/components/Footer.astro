@@ -15,10 +15,8 @@ const whatsappHref = `https://wa.me/${whatsappNumber}`;
   <div class="footer__inner">
     <p class="footer__tagline title-sm">{t.footer.tagline}</p>
     <div class="footer__links">
-      <a href={whatsappHref} class="footer__link footer__icon-link" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
-        <svg class="footer__icon" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 2C6.48 2 2 6.48 2 12c0 1.54.36 3.01.97 4.31l-1.29 4.58 4.71-1.23C8.88 21.55 10.37 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18c-1.41 0-2.73-.35-3.88-.95l-.28-.15-2.89.75.77-2.74-.18-.29c-.68-1.14-1.05-2.47-1.05-3.85 0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8zm3.53-12.47c-.21-.11-1.25-.62-1.44-.69-.19-.07-.33-.11-.47.11-.14.22-.53.67-.65.81-.12.14-.24.16-.45.05-.21-.11-1.29-.48-2.45-1.52-.91-.82-1.51-1.82-1.69-2.03-.18-.22-.02-.33.14-.44.14-.12.31-.31.47-.46.15-.15.2-.25.3-.41.1-.16.05-.3-.025-.42-.075-.12-.47-1.13-.64-1.54-.17-.39-.34-.34-.47-.35-.12-.01-.26-.01-.4-.01-.14 0-.37.05-.56.25-.19.2-.73.72-.73 1.75 0 1.03.75 2.03.86 2.17.11.14 1.55 2.36 3.74 3.31 2.2 1.01 2.85.89 3.32.83.47-.06 1.51-.62 1.72-1.22.21-.6.21-1.12.15-1.23-.07-.11-.18-.15-.36-.27z"/>
-        </svg>
+      <a href={whatsappHref} class="footer__link" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+        <img src="/icons/whatsapp.svg" alt="WhatsApp" class="footer__icon-img" />
       </a>
       <a href={t.footer.instagramHref} class="footer__link" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
         <img src="/icons/instagram.svg" alt="Instagram" class="footer__icon-img" />
@@ -57,7 +55,6 @@ const whatsappHref = `https://wa.me/${whatsappNumber}`;
   .footer__link:hover { color: var(--primary); }
   .footer__link:hover img { filter: brightness(1.2); }
   .footer__icon-img { width: 2.25rem; height: 2.25rem; transition: filter var(--transition); }
-  .footer__icon { width: 2.25rem; height: 2.25rem; }
   .footer__copy { color: var(--outline); }
 
   @media (min-width: 768px) {
