@@ -1,4 +1,5 @@
 import type { APIRoute } from 'astro';
+import { createSign } from 'node:crypto';
 
 /**
  * Public endpoint: returns per-day availability and pricing for a given month.
@@ -38,10 +39,106 @@ interface CalendarEvent {
   end?: { date?: string | null; dateTime?: string | null };
 }
 
+interface GoogleTokenResponse {
+  access_token: string;
+  token_type: string;
+  expires_in: number;
+}
+
+interface GoogleCalendarEventsResponse {
+  items?: CalendarEvent[];
+}
+
 const CALENDAR_SCOPE = 'https://www.googleapis.com/auth/calendar.readonly';
+const TOKEN_ENDPOINT = 'https://oauth2.googleapis.com/token';
+const CALENDAR_API_BASE = 'https://www.googleapis.com/calendar/v3/calendars';
 const RESERVA_REGEX = /reserva/i;
 const PRICE_REGEX = /precio[\s:]*([0-9]+(?:[.,][0-9]+)?)/i;
 const MAX_EVENTS_PER_MONTH = 250;
+const JWT_EXPIRY_SECONDS = 3600;
+
+function base64url(input: Buffer | string): string {
+  const buf = typeof input === 'string' ? Buffer.from(input) : input;
+  return buf.toString('base64').replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '');
+}
+
+/**
+ * Creates a signed RS256 JWT for Google service account authentication.
+ * @param email - Service account email
+ * @param privateKey - PEM-formatted RSA private key
+ * @returns Signed JWT string
+ */
+function createServiceAccountJWT(email: string, privateKey: string): string {
+  const now = Math.floor(Date.now() / 1000);
+  const header = base64url(JSON.stringify({ alg: 'RS256', typ: 'JWT' }));
+  const payload = base64url(JSON.stringify({
+    iss: email,
+    scope: CALENDAR_SCOPE,
+    aud: TOKEN_ENDPOINT,
+    exp: now + JWT_EXPIRY_SECONDS,
+    iat: now,
+  }));
+  const signingInput = `${header}.${payload}`;
+  const sign = createSign('RSA-SHA256');
+  sign.update(signingInput);
+  const signature = base64url(sign.sign(privateKey));
+  return `${signingInput}.${signature}`;
+}
+
+/**
+ * Exchanges a service account JWT for a Google OAuth2 access token.
+ * @param email - Service account email
+ * @param privateKey - PEM-formatted RSA private key
+ * @returns OAuth2 access token string
+ */
+async function getAccessToken(email: string, privateKey: string): Promise<string> {
+  const jwt = createServiceAccountJWT(email, privateKey);
+  const response = await fetch(TOKEN_ENDPOINT, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: new URLSearchParams({
+      grant_type: 'urn:ietf:params:oauth:grant-type:jwt-bearer',
+      assertion: jwt,
+    }),
+  });
+  if (!response.ok) {
+    throw new Error(`Token exchange failed: ${response.status} ${response.statusText}`);
+  }
+  const data = await response.json() as GoogleTokenResponse;
+  return data.access_token;
+}
+
+/**
+ * Fetches events from a Google Calendar for a given time range.
+ * @param calendarId - Google Calendar ID
+ * @param accessToken - Valid OAuth2 access token
+ * @param timeMin - ISO string for range start (inclusive)
+ * @param timeMax - ISO string for range end (inclusive)
+ * @returns Array of calendar events
+ */
+async function fetchCalendarEvents(
+  calendarId: string,
+  accessToken: string,
+  timeMin: string,
+  timeMax: string,
+): Promise<CalendarEvent[]> {
+  const params = new URLSearchParams({
+    timeMin,
+    timeMax,
+    singleEvents: 'true',
+    orderBy: 'startTime',
+    maxResults: String(MAX_EVENTS_PER_MONTH),
+  });
+  const url = `${CALENDAR_API_BASE}/${encodeURIComponent(calendarId)}/events?${params}`;
+  const response = await fetch(url, {
+    headers: { Authorization: `Bearer ${accessToken}` },
+  });
+  if (!response.ok) {
+    throw new Error(`Calendar API failed: ${response.status} ${response.statusText}`);
+  }
+  const data = await response.json() as GoogleCalendarEventsResponse;
+  return data.items ?? [];
+}
 
 /**
  * Formats a (year, month, day) triplet as an ISO date string (YYYY-MM-DD).
@@ -239,31 +336,13 @@ export const GET: APIRoute = async ({ request }) => {
   }
 
   try {
-    const { google } = await import('googleapis');
-
-    const auth = new google.auth.GoogleAuth({
-      credentials: {
-        client_email: serviceAccountEmail,
-        private_key: privateKey.replace(/\\n/g, '\n'),
-      },
-      scopes: [CALENDAR_SCOPE],
-    });
-
-    const calendar = google.calendar({ version: 'v3', auth });
+    const normalizedKey = privateKey.replace(/\\n/g, '\n');
+    const accessToken = await getAccessToken(serviceAccountEmail, normalizedKey);
 
     const timeMin = new Date(Date.UTC(year, month - 1, 1)).toISOString();
     const timeMax = new Date(Date.UTC(year, month, 0, 23, 59, 59)).toISOString();
 
-    const response = await calendar.events.list({
-      calendarId,
-      timeMin,
-      timeMax,
-      singleEvents: true,
-      orderBy: 'startTime',
-      maxResults: MAX_EVENTS_PER_MONTH,
-    });
-
-    const events = (response.data.items ?? []) as CalendarEvent[];
+    const events = await fetchCalendarEvents(calendarId, accessToken, timeMin, timeMax);
     const { reservedDays, priceByDay } = indexEvents(events);
     const days = buildDays(year, month, reservedDays, priceByDay);
 
