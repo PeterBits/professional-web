@@ -1,6 +1,8 @@
 ---
+import { Picture } from 'astro:assets';
 import type { Lang } from '../i18n/utils';
 import { useTranslations, getBookingsPath } from '../i18n/utils';
+import heroImg from '../assets/hero-exterior.png';
 
 interface Props { lang: Lang; }
 const { lang } = Astro.props;
@@ -9,8 +11,11 @@ const bookingsPath = getBookingsPath(lang);
 ---
 
 <section class="hero">
-  <img
-    src="/assets/foto exterior frente lateral campo verde.png"
+  <Picture
+    src={heroImg}
+    formats={['avif', 'webp']}
+    widths={[800, 1200, 1600, 2000]}
+    sizes="100vw"
     alt={t.home.hero.alt}
     class="hero__img"
     loading="eager"
@@ -35,6 +40,9 @@ const bookingsPath = getBookingsPath(lang);
     overflow: hidden;
     margin-top: calc(var(--header-height) * -1);
     padding-top: var(--header-height);
+  }
+  .hero picture {
+    display: contents;
   }
   .hero__img {
     position: absolute;
