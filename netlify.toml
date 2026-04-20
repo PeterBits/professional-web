@@ -1,3 +1,26 @@
 [build]
   command = "npm run build"
   publish = "dist"
+
+# Immutable cache for all Astro-hashed assets (JS, CSS, images)
+[[headers]]
+  for = "/_astro/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# HTML pages: always revalidate so new deploys take effect instantly
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# 1 hour cache for sitemap and robots
+[[headers]]
+  for = "/sitemap*.xml"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
+
+[[headers]]
+  for = "/robots.txt"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
