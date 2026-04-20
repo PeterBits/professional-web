@@ -10,7 +10,10 @@
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
-    "astro": "astro"
+    "astro": "astro",
+    "test": "vitest",
+    "test:watch": "vitest --watch",
+    "test:coverage": "vitest --coverage"
   },
   "dependencies": {
     "@astrojs/netlify": "^7.0.7",
