@@ -1,7 +1,9 @@
 ---
+import { Picture } from 'astro:assets';
 import type { Lang } from '../i18n/utils';
 import { useTranslations } from '../i18n/utils';
 import vanData from '../data/van-data.json';
+import interiorFrontImg from '../assets/gallery-interior-front.png';
 
 interface Props { lang: Lang; }
 const { lang } = Astro.props;
@@ -25,8 +27,11 @@ const equipment = vanData.equipment;
 <section class="van section">
   <div class="van__inner">
     <div class="van__media">
-      <img
-        src="/assets/foto dentro alante retocada.png"
+      <Picture
+        src={interiorFrontImg}
+        formats={['avif', 'webp']}
+        widths={[400, 800, 1200]}
+        sizes="(max-width: 1023px) 100vw, (max-width: 1199px) 50vw, 600px"
         alt={t.home.info.imageAlt}
         class="van__img"
         loading="lazy"
@@ -84,6 +89,7 @@ const equipment = vanData.equipment;
     overflow: hidden;
     border-radius: var(--radius-lg);
   }
+  .van__media picture { display: contents; }
   .van__img { width: 100%; height: 100%; object-fit: cover; }
   .van__scrim {
     position: absolute;
