@@ -6,6 +6,10 @@ interface Props { lang: Lang; }
 const { lang } = Astro.props;
 const t = useTranslations(lang);
 
+const DEFAULT_WHATSAPP_NUMBER = '34111223344';
+const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER ?? DEFAULT_WHATSAPP_NUMBER;
+const whatsappHref = `https://wa.me/${whatsappNumber}`;
+
 const monthsJson = JSON.stringify(t.bookings.calendar.months);
 const weekdaysJson = JSON.stringify(t.bookings.calendar.weekdays);
 ---
@@ -57,7 +61,13 @@ const weekdaysJson = JSON.stringify(t.bookings.calendar.weekdays);
       </div>
     </div>
 
-    <p class="cal__footnote label-sm">{t.bookings.calendar.footnote}</p>
+
+    <div class="cal__cta">
+      <!-- <p class="cal__cta-text body-md">{t.bookings.calendar.ctaText}</p> -->
+      <a href={whatsappHref} class="btn btn--primary" target="_blank" rel="noopener noreferrer">
+        {t.bookings.calendar.ctaButton}
+      </a>
+    </div>
   </div>
 </section>
 
@@ -349,6 +359,14 @@ const weekdaysJson = JSON.stringify(t.bookings.calendar.weekdays);
   .cal__status { color: var(--on-surface-variant); text-align: center; margin-top: 1.5rem; font-style: italic; }
   .cal__error { text-align: center; margin-top: 1.5rem; color: var(--error); }
   .cal__footnote { color: var(--outline); text-align: center; }
+
+  .cal__cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .cal__cta-text { color: var(--on-surface-variant); }
 
   @media (min-width: 768px) {
     .cal__head { flex-direction: row; justify-content: space-between; align-items: center; }
