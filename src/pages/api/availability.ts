@@ -270,6 +270,7 @@ function indexEvents(events: CalendarEvent[]): {
         continue;
       }
       if (price === null) continue;
+      if (reservedDays.has(day)) continue;
       const current = priceByDay.get(day);
       if (current === undefined || price > current) {
         priceByDay.set(day, price);
@@ -362,3 +363,16 @@ function jsonResponse(body: AvailabilityResponse): Response {
     headers: { 'Content-Type': 'application/json' },
   });
 }
+
+// Export for testing
+export {
+  parsePriceFromText,
+  eventMentionsReserva,
+  formatDateKey,
+  expandEventDays,
+  expandAllDayEvent,
+  expandTimedEvent,
+  indexEvents,
+  buildDays,
+  buildFallbackResponse,
+};
