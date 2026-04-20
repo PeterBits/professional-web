@@ -346,6 +346,13 @@ const weekdaysJson = JSON.stringify(t.bookings.calendar.weekdays);
     color: var(--tertiary);
     letter-spacing: 0.01em;
   }
+  :global(.cal__cell:has(.cal__price) .cal__num) {
+    font-size: 0.75rem;
+  }
+  :global(.cal__cell:has(.cal__price) .cal__price) {
+    font-size: 0.58rem;
+    margin-top: 0.1rem;
+  }
   :global(.cal__today-dot) {
     position: absolute;
     bottom: 4px;
