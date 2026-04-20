@@ -78,7 +78,6 @@
       "weekdays": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
     },
     "contact": {
-      "label": "Book",
       "title": "Three steps to hit the road.",
       "steps": [
         {
