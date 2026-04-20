@@ -1,21 +1,31 @@
 ---
-import type { Lang } from '../i18n/utils';
-import { useTranslations } from '../i18n/utils';
-
-interface Props { lang: Lang; }
-const { lang } = Astro.props;
-const t = useTranslations(lang);
-
+const steps = [
+  {
+    n: '01',
+    title: 'Consulta fechas',
+    text: 'Mira el calendario y elige tu ventana de viaje.',
+  },
+  {
+    n: '02',
+    title: 'Escríbenos',
+    text: 'Cuéntanos tu ruta desde Zamora, León, Valladolid o Salamanca y te confirmamos la tarifa por WhatsApp.',
+  },
+  {
+    n: '03',
+    title: 'Confirma',
+    text: 'Cerramos la reserva una vez concretado el seguro y la fianza.',
+  },
+];
 ---
 
 <section class="contact section">
   <div class="contact__inner">
     <header class="contact__header">
-      <h2 class="display-md">{t.bookings.contact.title}</h2>
+      <h2 class="display-md">Tres pasos para rodar.</h2>
     </header>
 
     <ol class="contact__steps">
-      {t.bookings.contact.steps.map((s) => (
+      {steps.map((s) => (
         <li class="contact__step">
           <span class="contact__n display-sm">{s.n}</span>
           <h3 class="title-lg contact__step-title">{s.title}</h3>

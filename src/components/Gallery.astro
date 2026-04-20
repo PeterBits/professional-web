@@ -1,34 +1,33 @@
 ---
 import { Picture } from 'astro:assets';
-import type { Lang } from '../i18n/utils';
-import { useTranslations } from '../i18n/utils';
 import galleryExterior from '../assets/gallery-exterior.png';
 import galleryInteriorBack from '../assets/gallery-interior-back.png';
 import galleryDining from '../assets/gallery-dining.png';
 import galleryFridge from '../assets/gallery-fridge.png';
 
-interface Props { lang: Lang; }
-const { lang } = Astro.props;
-const t = useTranslations(lang);
-
-const GALLERY_IMAGES = [galleryExterior, galleryInteriorBack, galleryDining, galleryFridge];
+const GALLERY_IMAGES = [
+  { src: galleryExterior,     alt: 'Vista lateral de la camper en un prado verde' },
+  { src: galleryInteriorBack, alt: 'Cocina y acceso a la zona trasera' },
+  { src: galleryDining,       alt: 'Comedor con mesa central y bancos' },
+  { src: galleryFridge,       alt: 'Nevera abierta llena de provisiones' },
+];
 ---
 
 <section class="gallery section">
   <div class="gallery__inner">
     <header class="gallery__header">
-      <span class="label-md gallery__label">{t.home.gallery.label}</span>
-      <h2 class="display-md">{t.home.gallery.title}</h2>
+      <span class="label-md gallery__label">Galería</span>
+      <h2 class="display-md">La camper, por dentro y por fuera.</h2>
     </header>
     <div class="gallery__grid">
-      {GALLERY_IMAGES.map((src, index) => (
+      {GALLERY_IMAGES.map(({ src, alt }) => (
         <figure class="gallery__item">
           <Picture
             src={src}
             formats={['avif', 'webp']}
             widths={[400, 800, 1200]}
             sizes="(max-width: 767px) 100vw, (max-width: 1199px) 50vw, 600px"
-            alt={t.home.gallery.images[index].alt}
+            alt={alt}
             class="gallery__img"
             loading="lazy"
           />

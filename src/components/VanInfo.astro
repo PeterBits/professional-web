@@ -1,13 +1,7 @@
 ---
 import { Picture } from 'astro:assets';
-import type { Lang } from '../i18n/utils';
-import { useTranslations } from '../i18n/utils';
 import vanData from '../data/van-data.json';
 import interiorFrontImg from '../assets/gallery-interior-front.png';
-
-interface Props { lang: Lang; }
-const { lang } = Astro.props;
-const t = useTranslations(lang);
 
 const ICONS: Record<string, string> = {
   bed:    '<path d="M3 18v-6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6M3 18h18M3 18v2M21 18v2M7 10V7a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v3"/>',
@@ -32,39 +26,39 @@ const equipment = vanData.equipment;
         formats={['avif', 'webp']}
         widths={[400, 800, 1200]}
         sizes="(max-width: 1023px) 100vw, (max-width: 1199px) 50vw, 600px"
-        alt={t.home.info.imageAlt}
+        alt="Interior de la camper: zona de salon mirando hacia adelante"
         class="van__img"
         loading="lazy"
       />
       <div class="van__scrim"></div>
       <div class="van__overlay">
-        <span class="label-md van__label">{t.home.info.label}</span>
-        <h2 class="display-md van__title">{t.home.info.title}</h2>
+        <span class="label-md van__label">La camper</span>
+        <h2 class="display-md van__title">Un refugio sobre ruedas, equipado al detalle.</h2>
       </div>
     </div>
 
     <div class="van__content">
       <div class="van__block">
-        <h3 class="title-lg">{t.home.info.specsTitle}</h3>
+        <h3 class="title-lg">Ficha técnica</h3>
         <dl class="van__specs">
           {specs.map((s) => (
             <div class="van__spec">
-              <dt class="label-sm">{s.label[lang]}</dt>
-              <dd class="title-sm">{s.value[lang]}</dd>
+              <dt class="label-sm">{s.label.es}</dt>
+              <dd class="title-sm">{s.value.es}</dd>
             </div>
           ))}
         </dl>
       </div>
 
       <div class="van__block">
-        <h3 class="title-lg">{t.home.info.equipmentTitle}</h3>
+        <h3 class="title-lg">Equipamiento</h3>
         <ul class="van__equipment">
           {equipment.map((item) => (
             <li class="van__item">
               <span class="van__icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" set:html={ICONS[item.icon] ?? ''} />
               </span>
-              <span class="body-lg">{item.label[lang]}</span>
+              <span class="body-lg">{item.label.es}</span>
             </li>
           ))}
         </ul>

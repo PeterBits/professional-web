@@ -8,11 +8,4 @@ export default defineConfig({
   output: 'static',
   adapter: netlify(),
   integrations: [sitemap()],
-  i18n: {
-    defaultLocale: 'es',
-    locales: ['es', 'en'],
-    routing: {
-      prefixDefaultLocale: true,
-    },
-  },
 });

@@ -1,33 +1,27 @@
 ---
-import type { Lang } from '../i18n/utils';
-import { useTranslations } from '../i18n/utils';
 import vanData from '../data/van-data.json';
 
-interface Props { lang: Lang; }
-const { lang } = Astro.props;
-const t = useTranslations(lang);
-
-const pricingSubtitle = vanData.pricing.subtitle[lang];
-const availabilityLabel = vanData.pricing.availabilityLabel[lang];
+const pricingSubtitle = vanData.pricing.subtitle.es;
+const availabilityLabel = vanData.pricing.availabilityLabel.es;
 const seasons = vanData.pricing.seasons;
 ---
 
 <section class="pricing section">
   <div class="pricing__inner">
     <header class="pricing__header">
-      <span class="label-md pricing__label">{t.home.pricing.label}</span>
-      <h2 class="display-md">{t.home.pricing.title}</h2>
+      <span class="label-md pricing__label">Tarifas</span>
+      <h2 class="display-md">Precios por temporada.</h2>
       <p class="body-lg pricing__subtitle">{pricingSubtitle}</p>
     </header>
 
     <ul class="pricing__grid">
       {seasons.map((card) => (
         <li class="pricing__card">
-          <p class="label-md pricing__season">{card.season[lang]}</p>
+          <p class="label-md pricing__season">{card.season.es}</p>
           <p class="pricing__price">
             <span class="pricing__amount display-md">{availabilityLabel}</span>
           </p>
-          <p class="body-lg pricing__months">{card.months[lang]}</p>
+          <p class="body-lg pricing__months">{card.months.es}</p>
         </li>
       ))}
     </ul>

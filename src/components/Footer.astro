@@ -1,11 +1,4 @@
 ---
-import type { Lang } from '../i18n/utils';
-import { useTranslations } from '../i18n/utils';
-
-interface Props { lang: Lang; }
-const { lang } = Astro.props;
-const t = useTranslations(lang);
-
 const DEFAULT_WHATSAPP_NUMBER = '34722185903';
 const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER ?? DEFAULT_WHATSAPP_NUMBER;
 const whatsappHref = `https://wa.me/${whatsappNumber}`;
@@ -13,16 +6,16 @@ const whatsappHref = `https://wa.me/${whatsappNumber}`;
 
 <footer class="footer">
   <div class="footer__inner">
-    <p class="footer__tagline title-sm">{t.footer.tagline}</p>
+    <p class="footer__tagline title-sm">Rodando Libre</p>
     <div class="footer__links">
       <a href={whatsappHref} class="footer__link" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
         <img src="/icons/whatsapp.svg" alt="WhatsApp" class="footer__icon-img" />
       </a>
-      <a href={t.footer.instagramHref} class="footer__link" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+      <a href="https://instagram.com/rodandolibre" class="footer__link" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
         <img src="/icons/instagram.svg" alt="Instagram" class="footer__icon-img" />
       </a>
     </div>
-    <p class="footer__copy label-sm">{t.footer.copyright}</p>
+    <p class="footer__copy label-sm">© 2026 Rodando Libre. Todos los derechos reservados.</p>
   </div>
 </footer>
 

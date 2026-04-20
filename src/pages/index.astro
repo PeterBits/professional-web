@@ -1,3 +1,37 @@
 ---
-return Astro.redirect('/es/');
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Hero from '../components/Hero.astro';
+import VanInfo from '../components/VanInfo.astro';
+import Gallery from '../components/Gallery.astro';
+import Pricing from '../components/Pricing.astro';
+
+const SITE = 'https://rodandolibre.es';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: 'Rodando Libre',
+  description: 'Alquila nuestra camper en Zamora. Ford Rimor Kilig totalmente equipada: cama doble, capuchina y cocina. Reserva online.',
+  url: SITE,
+  image: `${SITE}/og-image.jpg`,
+  priceRange: '€€',
+  sameAs: ['https://instagram.com/rodandolibre'],
+};
 ---
+
+<BaseLayout
+  title="Rodando Libre | Alquiler de camper en Zamora."
+  description="Alquila nuestra camper en Zamora. Ford Rimor Kilig totalmente equipada: cama doble, capuchina y cocina. Reserva online."
+  active="home"
+  canonicalUrl={`${SITE}/`}
+  schema={schema}
+>
+  <Header slot="header" active="home" />
+  <Hero />
+  <VanInfo />
+  <Gallery />
+  <Pricing />
+  <Footer slot="footer" />
+</BaseLayout>

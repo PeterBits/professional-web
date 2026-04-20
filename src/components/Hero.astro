@@ -1,13 +1,6 @@
 ---
 import { Picture } from 'astro:assets';
-import type { Lang } from '../i18n/utils';
-import { useTranslations, getBookingsPath } from '../i18n/utils';
 import heroImg from '../assets/hero-exterior.png';
-
-interface Props { lang: Lang; }
-const { lang } = Astro.props;
-const t = useTranslations(lang);
-const bookingsPath = getBookingsPath(lang);
 ---
 
 <section class="hero">
@@ -16,17 +9,17 @@ const bookingsPath = getBookingsPath(lang);
     formats={['avif', 'webp']}
     widths={[800, 1200, 1600, 2000]}
     sizes="100vw"
-    alt={t.home.hero.alt}
+    alt="Furgoneta camper en un prado verde con montañas"
     class="hero__img"
     loading="eager"
     fetchpriority="high"
   />
   <div class="hero__scrim"></div>
   <div class="hero__content">
-    <span class="hero__label label-md">{t.home.hero.label}</span>
-    <h1 class="hero__title display-lg">{t.home.hero.title}</h1>
-    <p class="hero__subtitle body-lg">{t.home.hero.subtitle}</p>
-    <a href={bookingsPath} class="btn btn--primary">{t.home.hero.cta}</a>
+    <span class="hero__label label-md">Furgoneta camper</span>
+    <h1 class="hero__title display-lg">Rodando Libre</h1>
+    <p class="hero__subtitle body-lg">Alquila una camper desde Zamora y lleva a 6 viajeros a donde quieras.</p>
+    <a href="/reservas" class="btn btn--primary">Consultar disponibilidad</a>
   </div>
 </section>
 

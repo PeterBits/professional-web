@@ -1,46 +1,45 @@
 ---
-import type { Lang } from '../i18n/utils';
-import { useTranslations } from '../i18n/utils';
 import '../styles/booking-calendar.css';
-
-interface Props { lang: Lang; }
-const { lang } = Astro.props;
-const t = useTranslations(lang);
 
 const DEFAULT_WHATSAPP_NUMBER = '34111223344';
 const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER ?? DEFAULT_WHATSAPP_NUMBER;
 const whatsappHref = `https://wa.me/${whatsappNumber}`;
 
-const monthsJson = JSON.stringify(t.bookings.calendar.months);
-const { selectionBar, modal } = t.bookings.calendar;
+const monthsJson = JSON.stringify([
+  'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+  'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre',
+]);
+
 const i18nJson = JSON.stringify({
-  selectionCountSingular: selectionBar.countSingular,
-  selectionCountPlural: selectionBar.countPlural,
-  selectionClear: selectionBar.clear,
-  modalTitle: modal.title,
-  modalDatesLabel: modal.datesLabel,
-  modalTotalLabel: modal.totalLabel,
-  modalCancel: modal.cancel,
-  modalConfirm: modal.confirm,
+  selectionCountSingular: '1 día seleccionado',
+  selectionCountPlural: '%n días seleccionados',
+  selectionClear: 'Limpiar selección',
+  modalTitle: 'Confirma tu reserva',
+  modalDatesLabel: 'Días seleccionados',
+  modalTotalLabel: 'Total estimado',
+  modalCancel: 'Cancelar',
+  modalConfirm: 'Confirmar',
 });
+
+const weekdays = ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'];
 ---
 
 <section class="cal section">
   <div class="cal__inner">
     <header class="cal__head">
-      <h2 class="display-sm">{t.bookings.calendar.title}</h2>
+      <h2 class="display-sm">Disponibilidad</h2>
       <ul class="cal__legend">
         <li class="cal__legend-item">
           <span class="cal__swatch cal__swatch--available"><span class="cal__swatch-num">18</span></span>
-          {t.bookings.calendar.legendAvailable}
+          Disponible
         </li>
         <li class="cal__legend-item">
           <span class="cal__swatch cal__swatch--reserved"><span class="cal__swatch-num">18</span></span>
-          {t.bookings.calendar.legendReserved}
+          Reservado
         </li>
         <li class="cal__legend-item">
           <span class="cal__swatch cal__swatch--unavailable"><span class="cal__swatch-num">18</span></span>
-          {t.bookings.calendar.legendUnavailable}
+          No disponible
         </li>
       </ul>
     </header>
@@ -61,15 +60,15 @@ const i18nJson = JSON.stringify({
       </div>
 
       <div id="cal-grid" class="cal__grid">
-        {t.bookings.calendar.weekdays.map((d) => (
+        {weekdays.map((d) => (
           <div class="cal__weekday label-sm">{d}</div>
         ))}
       </div>
 
-      <p id="cal-loading" class="cal__status">{t.bookings.calendar.loading}</p>
+      <p id="cal-loading" class="cal__status">Cargando disponibilidad…</p>
       <div id="cal-error" class="cal__error" hidden>
-        <p>{t.bookings.calendar.errorTitle}</p>
-        <p class="label-sm">{t.bookings.calendar.errorHint}</p>
+        <p>No se pudo cargar la disponibilidad.</p>
+        <p class="label-sm">Escríbenos por WhatsApp y te confirmamos al instante.</p>
       </div>
     </div>
 
@@ -80,7 +79,7 @@ const i18nJson = JSON.stringify({
 
     <div class="cal__cta">
       <button id="cal-whatsapp-btn" class="btn btn--primary" type="button">
-        {t.bookings.calendar.ctaButton}
+        Reservar por WhatsApp
       </button>
     </div>
   </div>
