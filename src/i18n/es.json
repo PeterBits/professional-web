@@ -19,8 +19,8 @@
   "home": {
     "hero": {
       "label": "Furgoneta camper",
-      "title": "Libertad sobre ruedas.",
-      "subtitle": "Una camper lista para el camino, hasta 6 viajeros. Equipamiento opcional, para prepararla a tu manera.",
+      "title": "Rodando Libre",
+      "subtitle": "Una camper lista para el camino, hasta 6 viajeros.",
       "cta": "Consultar disponibilidad",
       "alt": "Furgoneta camper en un prado verde con montañas"
     },
@@ -102,7 +102,7 @@
     }
   },
   "footer": {
-    "tagline": "Libertad sobre ruedas.",
+    "tagline": "Rodando Libre",
     "whatsapp": "WhatsApp",
     "instagram": "Instagram",
     "instagramHref": "https://instagram.com/rodandolibre",

@@ -19,8 +19,8 @@
   "home": {
     "hero": {
       "label": "Camper van",
-      "title": "Freedom on wheels.",
-      "subtitle": "A road-ready camper van for up to 6 travellers. Optional equipment, pack it your way.",
+      "title": "Rolling Free",
+      "subtitle": "A road-ready camper van for up to 6 travellers.",
       "cta": "See availability",
       "alt": "Camper van in a green meadow with mountains"
     },
@@ -102,7 +102,7 @@
     }
   },
   "footer": {
-    "tagline": "Freedom on wheels.",
+    "tagline": "Rolling Free.",
     "whatsapp": "WhatsApp",
     "instagram": "Instagram",
     "instagramHref": "https://instagram.com/rodandolibre",
