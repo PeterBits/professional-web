@@ -60,17 +60,42 @@
       "loading": "Cargando disponibilidad…",
       "errorTitle": "No se pudo cargar la disponibilidad.",
       "errorHint": "Escríbenos por WhatsApp y te confirmamos al instante.",
-      "footnote": "Las reservas se confirman por WhatsApp.",
-      "months": ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"],
-      "weekdays": ["Lun","Mar","Mié","Jue","Vie","Sáb","Dom"]
+      "ctaButton": "Reservar por WhatsApp",
+      "months": [
+        "Enero",
+        "Febrero",
+        "Marzo",
+        "Abril",
+        "Mayo",
+        "Junio",
+        "Julio",
+        "Agosto",
+        "Septiembre",
+        "Octubre",
+        "Noviembre",
+        "Diciembre"
+      ],
+      "weekdays": ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"]
     },
     "contact": {
       "label": "Reservar",
       "title": "Tres pasos para rodar.",
       "steps": [
-        { "n": "01", "title": "Consulta fechas", "text": "Mira el calendario y elige tu ventana de viaje." },
-        { "n": "02", "title": "Escríbenos",      "text": "Cuéntanos ruta y número de viajeros por WhatsApp y te confirmamos la tarifa." },
-        { "n": "03", "title": "Confirma",         "text": "Cerramos la reserva una vez concretado el seguro y la fianza." }
+        {
+          "n": "01",
+          "title": "Consulta fechas",
+          "text": "Mira el calendario y elige tu ventana de viaje."
+        },
+        {
+          "n": "02",
+          "title": "Escríbenos",
+          "text": "Cuéntanos ruta y número de viajeros por WhatsApp y te confirmamos la tarifa."
+        },
+        {
+          "n": "03",
+          "title": "Confirma",
+          "text": "Cerramos la reserva una vez concretado el seguro y la fianza."
+        }
       ],
       "whatsapp": "Reservar por WhatsApp",
       "instagram": "Síguenos en Instagram",
