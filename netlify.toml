@@ -2,6 +2,18 @@
   command = "npm run build"
   publish = "dist"
 
+[[redirects]]
+  from = "/es/*"
+  to = "/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/en/*"
+  to = "/:splat"
+  status = 301
+  force = true
+
 # Immutable cache for all Astro-hashed assets (JS, CSS, images)
 [[headers]]
   for = "/_astro/*"
