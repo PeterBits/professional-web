@@ -43,8 +43,8 @@
   color: var(--on-surface);
 }
 .cal__swatch--reserved {
-  background: var(--primary);
-  color: var(--on-primary);
+  background: var(--tertiary);
+  color: var(--on-tertiary);
 }
 .cal__swatch--unavailable {
   background: transparent;
@@ -109,16 +109,19 @@
 .cal__cell--available:hover { background: var(--surface-container-highest); }
 .cal__cell--selected {
   cursor: pointer;
-  background: var(--secondary);
-  color: var(--on-secondary);
-}
-.cal__cell--selected:hover {
-  background: var(--secondary-container);
-  color: var(--on-secondary-container);
-}
-.cal__cell--reserved {
   background: var(--primary);
   color: var(--on-primary);
+}
+.cal__cell--selected .cal__price {
+  color: inherit;
+}
+.cal__cell--selected:hover {
+  background: var(--primary-container);
+  color: var(--on-primary-container);
+}
+.cal__cell--reserved {
+  background: var(--tertiary);
+  color: var(--on-tertiary);
   cursor: not-allowed;
 }
 .cal__cell--unavailable {
