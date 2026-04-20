@@ -9,9 +9,24 @@ interface Props {
   description: string;
   lang: Lang;
   active: ActivePage;
+  canonicalUrl: string;
+  hreflangEs: string;
+  hreflangEn: string;
+  ogImage?: string;
+  schema?: Record<string, unknown>;
 }
 
-const { title, description, lang, active: _active } = Astro.props;
+const {
+  title,
+  description,
+  lang,
+  active: _active,
+  canonicalUrl,
+  hreflangEs,
+  hreflangEn,
+  ogImage = '/og-image.jpg',
+  schema,
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -21,7 +36,32 @@ const { title, description, lang, active: _active } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <meta name="theme-color" content="#131313" />
+
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="alternate" hreflang="es" href={hreflangEs} />
+    <link rel="alternate" hreflang="en" href={hreflangEn} />
+    <link rel="alternate" hreflang="x-default" href={hreflangEs} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content={lang === 'es' ? 'es_ES' : 'en_US'} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    {schema && (
+      <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    )}
+
     <title>{title}</title>
   </head>
   <body>
