@@ -6,7 +6,6 @@ const whatsappHref = `https://wa.me/${whatsappNumber}`;
 
 <footer class="footer">
   <div class="footer__inner">
-    <p class="footer__tagline title-sm">Olivantoro</p>
     <div class="footer__links">
       <a href={whatsappHref} class="footer__link footer__link--whatsapp" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
         <svg class="footer__icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -30,6 +29,7 @@ const whatsappHref = `https://wa.me/${whatsappNumber}`;
         </svg>
       </a>
     </div>
+    <p class="footer__email label-sm">olivantoro@outlook.es</p>
     <p class="footer__copy label-sm">© 2026 Olivantoro. Todos los derechos reservados.</p>
   </div>
 </footer>
@@ -47,13 +47,7 @@ const whatsappHref = `https://wa.me/${whatsappNumber}`;
     gap: 1.5rem;
     align-items: flex-start;
   }
-  .footer__tagline {
-    font-family: var(--font-serif);
-    font-style: italic;
-    color: var(--on-surface);
-    font-size: 1.125rem;
-  }
-  .footer__links { display: flex; gap: 1.25rem; }
+  .footer__links { display: flex; align-items: center; gap: 1.25rem; }
   .footer__link {
     display: flex;
     align-items: center;
@@ -64,6 +58,7 @@ const whatsappHref = `https://wa.me/${whatsappNumber}`;
   .footer__link--whatsapp:hover { color: #25D366; }
   .footer__link--instagram:hover .footer__icon path { fill: url(#ig-grad); }
   .footer__icon { width: 2.25rem; height: 2.25rem; }
+  .footer__email { color: var(--outline); }
   .footer__copy { color: var(--outline); }
 
   @media (max-width: 767px) {
